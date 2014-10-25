@@ -35,14 +35,15 @@ public class Hand_Controller : MonoBehaviour {
 		movementZ = Input.GetAxis("Mouse Y") * movementSpeed * Time.deltaTime;
 	
 		if(Input.GetKey(downKey)){
-			yHeightUsed -= yMovementSpeed * Time.deltaTime;
+			yHeightUsed = -(yMovementSpeed * Time.deltaTime);
 		}else if(yHeightUsed < yHeightStart){
-			yHeightUsed += yMovementSpeed * Time.deltaTime * ySpeedMultiplier;
+			yHeightUsed = +(yMovementSpeed * Time.deltaTime * ySpeedMultiplier);
 		}
 
 		Vector3 mouvement = new Vector3(movementX, yHeightUsed, movementZ);
 
 		transform.Translate (mouvement, Space.World);
+
 		float newY = transform.position.y;
 		float clampedLimitX = Mathf.Clamp(transform.position.x, limiterXNegative, limiterXPositive);
 		float clampedLimitY = Mathf.Clamp(transform.position.y, limiterYNegative, yHeightStart);
