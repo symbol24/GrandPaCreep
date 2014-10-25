@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Hand_Controller.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Candy_Controller.cs">
     <Files>
-      <File FileName="Assets\Scripts\Candy_Controller.cs" Line="6" Column="6" />
-      <File FileName="Assets\Scripts\Hand_Controller.cs" Line="40" Column="71" />
+      <File FileName="Assets\Scripts\Candy_Controller.cs" Line="6" Column="26" />
+      <File FileName="Assets\Scripts\Hand_Controller.cs" Line="104" Column="3" />
+      <File FileName="Assets\Scripts\Receiving_Controller.cs" Line="23" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
