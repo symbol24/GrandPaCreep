@@ -1,0 +1,22 @@
+Initialize engine version: 4.5.3f3 (fca41a4fabea)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA Quadro K2000 (ID=0xffe)
+    Vendor:   NVIDIA
+    VRAM:     1990 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\1411596\Documents\GrandPaCreep\candyHand_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\1411596\Documents\GrandPaCreep\candyHand_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\1411596\Documents\GrandPaCreep\candyHand_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\1411596\Documents\GrandPaCreep\candyHand_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+- Completed reload, in  0.048 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+UnloadTime: 0.712411 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 17881.
+Total: 2.189389 ms (FindLiveObjects: 0.732385 ms CreateObjectMapping: 0.132883 ms MarkObjects: 0.692992 ms  DeleteObjects: 0.045219 ms)
+
