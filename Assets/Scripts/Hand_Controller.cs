@@ -16,19 +16,35 @@ public class Hand_Controller : MonoBehaviour {
 	public float limiterYNegative;
 	public float limiterZPositive;
 	public float limiterZNegative;
-	public bool isGrabbing;
+	private bool isGrabbing;
 	public Candy_Controller[] objectsGrabbed;
 	public Candy_Controller[] objectsTargetted;
 	private int amountOfGrabbedObjects = 0;
 	private int amountOfTargets = 0;
-	public bool isHandShaking = false;
-	public float timeToNextRelease;
+	private bool isHandShaking = false;
+	private float timeToNextRelease;
 	public float delayForNextRelease;
+	public float shakingLimiter;
+	public KeyCode[] lettersToPressKeycodes;
+	private KeyCode letter1KeyCode;
+	private KeyCode letter2KeyCode;
+	public GUIText letter1;
+	public GUIText letter2;
+	private bool isPressingToPreventShake = false;
+	private float timeToNextShake;
+	public float delayForNextShake;
+	private float timeToNextKeyChange;
+	public float delayForNextKeyChange;
+	private int lastLetterChanged;
 
 	// Use this for initialization
 	void Start () {
 		limiterYPositive = transform.position.y;
 		timeToNextRelease = Time.time;
+		timeToNextShake = Time.time;
+		timeToNextKeyChange = Time.time;
+		SetKeyToPress (2);
+		SetKeyToPress (1);
 	}
 	
 	// Update is called once per frame
@@ -60,9 +76,30 @@ public class Hand_Controller : MonoBehaviour {
 			isGrabbing = false;
 		}
 
+		if(Time.time > timeToNextKeyChange){
+			timeToNextKeyChange = Time.time + delayForNextKeyChange;
+			SetKeyToPress(lastLetterChanged);
+		}
+
+		if(Input.GetKey(letter1KeyCode) && Input.GetKey(letter2KeyCode)){
+			isPressingToPreventShake = true;
+		}else{
+			isPressingToPreventShake = false;
+		}
+
+		if(Time.time > timeToNextShake){
+			timeToNextShake = Time.time + delayForNextShake;
+			if(!isPressingToPreventShake){
+				ShakeHand();
+				isHandShaking = true;
+			}else{
+				isHandShaking = false;
+			}
+		}
+
 		if(Time.time > timeToNextRelease){
-			ReleaseOneObject();
 			timeToNextRelease = Time.time + delayForNextRelease;
+			ReleaseOneObject(isHandShaking);
 		}
 	}
 
@@ -83,8 +120,8 @@ public class Hand_Controller : MonoBehaviour {
 		amountOfGrabbedObjects = 0;
 	}
 
-	public void ReleaseOneObject(){
-		if(amountOfGrabbedObjects > 0){
+	public void ReleaseOneObject(bool isShaking){
+		if(amountOfGrabbedObjects > 0 && isShaking){
 			amountOfGrabbedObjects--;
 			objectsGrabbed[amountOfGrabbedObjects].rigidbody.isKinematic = false;
 			objectsGrabbed[amountOfGrabbedObjects].transform.parent = null;
@@ -111,6 +148,36 @@ public class Hand_Controller : MonoBehaviour {
 		if(amountOfTargets < objectsTargetted.Length){
 			objectsTargetted[amountOfTargets] = targetCandy;
 			amountOfTargets++;
+		}
+	}
+
+	private void ShakeHand(){
+		float shakeX = Random.Range (-shakingLimiter, shakingLimiter);
+		float shakeZ = Random.Range (-shakingLimiter, shakingLimiter);
+		Vector3 shakeMouvement = new Vector3 (shakeX, 0, shakeZ);
+		transform.Translate (shakeMouvement, Space.World);
+
+		float clampedLimitX = Mathf.Clamp(transform.position.x, limiterXNegative, limiterXPositive);
+		float clampedLimitY = Mathf.Clamp(transform.position.y, limiterYNegative, limiterYPositive);
+		float clampedLimitZ = Mathf.Clamp(transform.position.z, limiterZNegative, limiterZPositive);
+		transform.position = new Vector3 (clampedLimitX, clampedLimitY, clampedLimitZ);	
+	}
+
+	private void SetKeyToPress(int letterIDtoChange){
+		int keyNumber = Random.Range (0, lettersToPressKeycodes.Length-1);
+		KeyCode keyToChangeWith = lettersToPressKeycodes [keyNumber];
+		while(keyToChangeWith == letter1KeyCode || keyToChangeWith == letter2KeyCode){
+			keyNumber = Random.Range (0, lettersToPressKeycodes.Length-1);
+			keyToChangeWith = lettersToPressKeycodes [keyNumber];
+		}
+		if(letterIDtoChange == 2){
+			letter1.text = keyToChangeWith.ToString();
+			letter1KeyCode = keyToChangeWith;
+			lastLetterChanged = 1;
+		}else{
+			letter2.text = keyToChangeWith.ToString();
+			letter2KeyCode = keyToChangeWith;
+			lastLetterChanged = 2;
 		}
 	}
 }
