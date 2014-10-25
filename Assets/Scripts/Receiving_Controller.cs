@@ -15,6 +15,8 @@ public class Receiving_Controller : MonoBehaviour {
 	}
 	public emotionalStates currentEmotion = emotionalStates.neutral;
 	public string[] emotions;
+	public AudioClip[] kidClips;
+	public Camera mainCamera;
 
 
 	// Use this for initialization
@@ -41,15 +43,19 @@ public class Receiving_Controller : MonoBehaviour {
 		if(scoreCheck >= contentScore && scoreCheck < HappyScore){
 			currentEmotion = emotionalStates.content;
 			emotionDisplay.text = emotions [1];
+			AudioSource.PlayClipAtPoint(kidClips[1], mainCamera.transform.position);
 		}else if(scoreCheck >= HappyScore){
 			currentEmotion = emotionalStates.happy;
+			AudioSource.PlayClipAtPoint(kidClips[1], mainCamera.transform.position);
 			emotionDisplay.text = emotions [2];
 		}else if(scoreCheck < sadScore && scoreCheck >= angryScore){
 			currentEmotion = emotionalStates.sad;
+			AudioSource.PlayClipAtPoint(kidClips[0], mainCamera.transform.position);
 			emotionDisplay.text = emotions [3];
 		}else if(scoreCheck <= angryScore){
 			currentEmotion = emotionalStates.angry;
 			emotionDisplay.text = emotions [4];
+			AudioSource.PlayClipAtPoint(kidClips[0], mainCamera.transform.position);
 		}else{
 			currentEmotion = emotionalStates.neutral;
 			emotionDisplay.text = emotions [0];
