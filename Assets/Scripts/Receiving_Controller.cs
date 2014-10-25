@@ -4,11 +4,11 @@ using System.Collections;
 public class Receiving_Controller : MonoBehaviour {
 	public Game_Manager gmeMgr;
 	public string bagOwner;
-	public int minimumAmountOfCandy;
-	public int limitAmountofCandy;
-	public int currentAmountOfGoodCandy;
-	public int currentAmountOfBadCandy;
-	public int totalAmountOfCandy;
+	public int thisReceiverScore;
+	public int contentScore;
+	public int HappyScore;
+	public int sadScore;
+	public int angryScore;
 	public GUIText emotionDisplay;
 	public enum emotionalStates{
 		neutral,content,happy,sad,angry
@@ -31,26 +31,28 @@ public class Receiving_Controller : MonoBehaviour {
 	void OnTriggerEnter(Collider coll){
 		if(coll.gameObject.GetComponent<Candy_Controller>() != null){
 			int scoreValue = coll.gameObject.GetComponent<Candy_Controller>().scoreValue;
-			Candy_Controller.allCandyTypes thisCandyType = coll.gameObject.GetComponent<Candy_Controller>().thisCandyType;
 			gmeMgr.updateScore(scoreValue);
-			if(thisCandyType == Candy_Controller.allCandyTypes.good){
-				currentAmountOfGoodCandy++;
-			}else{
-				currentAmountOfBadCandy++;
-			}
-			totalAmountOfCandy = currentAmountOfGoodCandy + currentAmountOfBadCandy;
+			thisReceiverScore += scoreValue;
+			changeEmotionalState(thisReceiverScore);
 		}
 	}
 
-	public void changeEmotionalState(Candy_Controller.allCandyTypes passedCandyType){
-		if(currentAmountOfGoodCandy > currentAmountOfBadCandy && totalAmountOfCandy < minimumAmountOfCandy){
+	public void changeEmotionalState(int scoreCheck){
+		if(scoreCheck >= contentScore && scoreCheck < HappyScore){
 			currentEmotion = emotionalStates.content;
-		}else if(currentAmountOfGoodCandy > currentAmountOfBadCandy && totalAmountOfCandy > minimumAmountOfCandy){
+			emotionDisplay.text = emotions [1];
+		}else if(scoreCheck >= HappyScore){
 			currentEmotion = emotionalStates.happy;
-		}else if(currentAmountOfGoodCandy < currentAmountOfBadCandy && totalAmountOfCandy < minimumAmountOfCandy){
+			emotionDisplay.text = emotions [2];
+		}else if(scoreCheck < sadScore && scoreCheck >= angryScore){
 			currentEmotion = emotionalStates.sad;
-		}else if(currentAmountOfGoodCandy < currentAmountOfBadCandy && totalAmountOfCandy > minimumAmountOfCandy){
+			emotionDisplay.text = emotions [3];
+		}else if(scoreCheck <= angryScore){
 			currentEmotion = emotionalStates.angry;
+			emotionDisplay.text = emotions [4];
+		}else{
+			currentEmotion = emotionalStates.neutral;
+			emotionDisplay.text = emotions [0];
 		}
 	}
 }
