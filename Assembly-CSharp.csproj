@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\Game_Manager.cs" />
      <Compile Include="Assets\Scripts\Hand_Controller.cs" />
      <Compile Include="Assets\Scripts\Receiving_Controller.cs" />
+     <Compile Include="Assets\Scripts\button_start.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
