@@ -10,11 +10,13 @@ public class Game_Manager : MonoBehaviour {
 	public float DelayToNextGrandPaSound;
 	private float timeToNExtGrandPaSound;
 	private int grandPaSoundId = 0;
+	private AudioSource soundSource;
 
 
 	// Use this for initialization
 	void Start () {
 		Screen.lockCursor = true;
+		soundSource = mainCamera.GetComponent<AudioSource> ();
 		timeToNExtGrandPaSound = Time.time;
 	}
 	
@@ -22,7 +24,8 @@ public class Game_Manager : MonoBehaviour {
 	void Update () {
 		if (Time.time > timeToNExtGrandPaSound) {
 			timeToNExtGrandPaSound = Time.time + DelayToNextGrandPaSound;
-			AudioSource.PlayClipAtPoint(grandPaClips[grandPaSoundId], mainCamera.transform.position);
+			soundSource.audio.clip = grandPaClips[grandPaSoundId];
+			soundSource.audio.Play();
 			grandPaSoundId++;
 			if(grandPaSoundId >= grandPaClips.Length){
 				grandPaSoundId = 0;
