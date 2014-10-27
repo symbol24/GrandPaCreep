@@ -2,15 +2,21 @@ Initialize engine version: 4.5.3f3 (fca41a4fabea)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA Quadro K2000 (ID=0xffe)
+    Renderer: NVIDIA GeForce GTX 770 (ID=0x1184)
     Vendor:   NVIDIA
-    VRAM:     1990 MB
+    VRAM:     3072 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\1411596\Documents\GrandPaCreep\candyHand_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\1411596\Documents\GrandPaCreep\candyHand_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\1411596\Documents\GrandPaCreep\candyHand_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\1411596\Documents\GrandPaCreep\candyHand_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\pconte\Documents\GitHub\GrandPaCreep\candyHand_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\pconte\Documents\GitHub\GrandPaCreep\candyHand_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\pconte\Documents\GitHub\GrandPaCreep\candyHand_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\pconte\Documents\GitHub\GrandPaCreep\candyHand_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 - Completed reload, in  0.037 seconds
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+desktop: 1920x1200 59Hz; virtual: 3600x1200 at -1680,0
 <RI> Initializing input.
 <RI> Input initialized.
+UnloadTime: 0.270105 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 17969.
+Total: 1.576932 ms (FindLiveObjects: 0.551354 ms CreateObjectMapping: 0.084169 ms MarkObjects: 0.533171 ms  DeleteObjects: 0.033726 ms)
+
