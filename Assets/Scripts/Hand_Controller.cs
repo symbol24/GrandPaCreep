@@ -31,9 +31,9 @@ public class Hand_Controller : MonoBehaviour {
 	public GUIText letter1;
 	public GUIText letter2;
 	private bool isPressingToPreventShake = false;
-	private float timeToNextShake;
+	public float timeToNextShake;
 	public float delayForNextShake;
-	private float timeToNextKeyChange;
+	public float timeToNextKeyChange;
 	public float delayForNextKeyChange;
 	private int lastLetterChanged;
 

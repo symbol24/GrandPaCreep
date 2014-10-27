@@ -8,7 +8,7 @@ public class Game_Manager : MonoBehaviour {
 	public AudioClip[] grandPaClips;
 	public AudioClip[] doorClips;
 	public float DelayToNextGrandPaSound;
-	private float timeToNExtGrandPaSound;
+	public float timeToNExtGrandPaSound;
 	private int grandPaSoundId = 0;
 	private AudioSource soundSource;
 
